@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ToDoItem from "./ToDoItem";
 import data from "../json/task.json";
-import { Button, Input, Divider } from "@mantine/core";
+import { Button, Input, Divider, Notification } from "@mantine/core";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { isEmptyString } from "../lib/util";
 
@@ -14,6 +14,7 @@ interface Props {
 export default function ToDoList() {
   const [tasks, setTasks] = useState(data);
   const [text, setText] = useState("");
+  const [hideToast, setHideToast] = useState(true);
 
   const addTask = (text: string) => {
     const newTask = {
@@ -28,6 +29,7 @@ export default function ToDoList() {
 
   const deleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id));
+    setHideToast(true);
   };
 
   const toggleCompleted = (id: number) => {
@@ -54,6 +56,13 @@ export default function ToDoList() {
       ))}
       <Divider my="md" />
       <AddTask text={text} onChange={setText} onClick={addTask} />
+      {hideToast && (
+        <Notification
+          color="green"
+          title="Task Removed"
+          onClose={() => setHideToast(false)}
+        ></Notification>
+      )}
     </div>
   );
 }
