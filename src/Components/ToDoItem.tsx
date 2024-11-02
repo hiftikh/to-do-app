@@ -32,14 +32,14 @@ export default function ToDoItem({
     <div
       className={joinClassNames(
         "flex my-5 rounded-xl justify-between items-center gap-5 shadow-lg p-5",
-        task.completed ? "bg-green-400" : "bg-white"
+        task.completed ? "bg-green-300" : "bg-white"
       )}
     >
       <CompletedInput
         onChange={onChangeCompleteHandle}
         checked={task.completed}
       />
-      <div className="w-5/6 text-left">
+      <div className="w-5/6 text-left text-black">
         <p>{task.text}</p>
         <span className="text-xs">
           Date Added: {formatDate(task.dateAdded.toString())}
