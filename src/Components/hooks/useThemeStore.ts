@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import type {} from "@redux-devtools/extension";
 
-export interface ThemeState {
+interface ThemeState {
   themeMode?: string;
 }
 
