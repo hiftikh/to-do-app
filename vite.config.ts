@@ -8,4 +8,5 @@ export default defineConfig({
       include: "**/*.tsx",
     }),
   ],
+  base: "/to-do-app/",
 });
