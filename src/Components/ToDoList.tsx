@@ -29,6 +29,13 @@ export default function ToDoList() {
 
   const onClickClearTasks = () => {
     clearTasks();
+    notifications.show({
+      color: "green",
+      title: "All tasks have been deleted.",
+      message: "",
+      autoClose: 2000,
+      position: "bottom-center",
+    });
   };
 
   return (
