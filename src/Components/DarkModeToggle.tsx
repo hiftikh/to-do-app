@@ -5,7 +5,7 @@ import useThemeStore from "./hooks/useThemeStore";
 export default function DarkModeToggle() {
   const { themeMode, setThemeMode } = useThemeStore((state) => state);
 
-  const onChangeHandle = (e: any) => {
+  const onChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const themeValue = e.target.checked ? "dark" : "light";
     setThemeMode(themeValue);
   };
