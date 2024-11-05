@@ -2,12 +2,12 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { MantineProvider, Container, Divider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
-import useThemeStore from "./Components/hooks/useThemeStore";
-import useTaskStore from "./Components/hooks/useTaskStore";
-import DarkModeToggle from "./Components/DarkModeToggle";
-import ToDoList from "./Components/ToDoList";
-import AddTask from "./Components/AddTask";
-import ClearHistory from "./Components/ClearHistory";
+import useThemeStore from "./hooks/useThemeStore";
+import useTaskStore from "./hooks/useTaskStore";
+import DarkModeToggle from "./components/DarkModeToggle";
+import TaskList from "./components/Tasks/TaskList";
+import AddTask from "./components/Tasks/AddTask";
+import ClearHistory from "./components/ClearHistory";
 
 function App() {
   const themeMode = useThemeStore((state) => state.themeMode);
@@ -23,7 +23,7 @@ function App() {
           <h1 className="text-xl font-bold text-center">
             To Do List ({taskList.length})
           </h1>
-          <ToDoList />
+          <TaskList />
           <Divider my="md" />
           <AddTask />
           <ClearHistory />

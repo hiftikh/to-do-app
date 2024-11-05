@@ -1,6 +1,6 @@
-import ToDoItem from "./ToDoItem";
+import ToDoItem from "./TaskItem";
 
-export default function ToDoList() {
+export default function TaskList() {
   return (
     <div className="mx-auto rounded-xl">
       <ToDoItem />

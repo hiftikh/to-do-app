@@ -2,6 +2,6 @@
 
 Created using ReactJS/Typescript via Vite.
 
-Frontend Tools: TailwindCSS, Mantine
+Frontend Tools: TailwindCSS and Mantine
 
 State Management: Zustand

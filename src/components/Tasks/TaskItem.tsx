@@ -1,10 +1,10 @@
 import { Checkbox, Button } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
-import { formatDate, joinClassNames } from "../lib/util";
+import { formatDate, joinClassNames } from "../../lib/util";
 import { notifications } from "@mantine/notifications";
-import useTaskStore from "./hooks/useTaskStore";
+import useTaskStore from "../../hooks/useTaskStore";
 
-export default function ToDoItem() {
+export default function TaskItem() {
   const { taskList, deleteTask, toggleComplete } = useTaskStore(
     (state) => state
   );

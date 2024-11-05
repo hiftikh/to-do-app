@@ -1,6 +1,6 @@
 import { Switch, rem } from "@mantine/core";
 import { IconSunFilled, IconMoonFilled } from "@tabler/icons-react";
-import useThemeStore from "./hooks/useThemeStore";
+import useThemeStore from "../hooks/useThemeStore";
 
 export default function DarkModeToggle() {
   const { themeMode, setThemeMode } = useThemeStore((state) => state);

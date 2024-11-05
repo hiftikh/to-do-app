@@ -1,6 +1,6 @@
 import { Button } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import useTaskStore from "./hooks/useTaskStore";
+import useTaskStore from "../hooks/useTaskStore";
 
 export default function ClearHistory() {
   const { taskList, clearTasks } = useTaskStore((state) => state);

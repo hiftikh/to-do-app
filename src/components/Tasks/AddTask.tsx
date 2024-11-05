@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button, Input } from "@mantine/core";
 import { IconExclamationCircle } from "@tabler/icons-react";
-import { isEmptyString } from "../lib/util";
+import { isEmptyString } from "../../lib/util";
 import { notifications } from "@mantine/notifications";
-import useTaskStore from "./hooks/useTaskStore";
+import useTaskStore from "../../hooks/useTaskStore";
 
 export default function AddTask() {
   const [text, setText] = useState("");
