@@ -15,6 +15,7 @@ export default function ClearHistory() {
       position: "bottom-center",
     });
   };
+
   return (
     <Button
       onClick={onClickClearTasks}
