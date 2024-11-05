@@ -46,7 +46,7 @@ export default function ToDoList() {
       <br />
       <Button
         onClick={onClickClearTasks}
-        className="w-full "
+        className="w-full"
         disabled={taskList.length < 1}
       >
         Clear History
