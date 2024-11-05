@@ -1,10 +1,10 @@
 import { useState } from "react";
 import ToDoItem from "./ToDoItem";
-import data from "../json/task.json";
 import { Button, Input, Divider } from "@mantine/core";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { isEmptyString } from "../lib/util";
 import { notifications } from "@mantine/notifications";
+import useTaskStore from "./hooks/useTaskStore";
 
 interface Props {
   text: string;
@@ -13,56 +13,37 @@ interface Props {
 }
 
 export default function ToDoList() {
-  const [tasks, setTasks] = useState(data);
   const [text, setText] = useState("");
+  const { taskList, addTask, clearTasks } = useTaskStore((state) => state);
 
-  const addTask = (text: string) => {
+  const addTaskHandle = (text: string) => {
     const newTask = {
       id: Date.now(),
-      text,
+      name: text,
       completed: false,
-      dateAdded: new Date().toDateString(),
+      dateAdded: new Date(),
     };
-    setTasks([...tasks, newTask]);
+    addTask(newTask);
     setText("");
   };
 
-  const deleteTask = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-    const taskName = tasks.filter((task) => task.id === id)[0].text;
-    notifications.show({
-      color: "red",
-      title: "Task Removed",
-      message: `"${taskName}"`,
-      autoClose: 2000,
-      position: "bottom-center",
-    });
-  };
-
-  const toggleCompleted = (id: number) => {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, completed: !task.completed };
-        } else {
-          return task;
-        }
-      })
-    );
+  const onClickClearTasks = () => {
+    clearTasks();
   };
 
   return (
     <div className="mx-auto rounded-xl">
-      {tasks.map((task) => (
-        <ToDoItem
-          key={task.id}
-          task={task}
-          deleteTask={deleteTask}
-          toggleCompleted={toggleCompleted}
-        />
-      ))}
+      <ToDoItem />
       <Divider my="md" />
-      <AddTask text={text} onChange={setText} onClick={addTask} />
+      <AddTask text={text} onChange={setText} onClick={addTaskHandle} />
+      <br />
+      <Button
+        onClick={onClickClearTasks}
+        className="w-full "
+        disabled={taskList.length < 1}
+      >
+        Clear History
+      </Button>
     </div>
   );
 }

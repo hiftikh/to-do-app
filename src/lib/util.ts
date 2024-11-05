@@ -4,7 +4,10 @@ export function joinClassNames(...classes: string[]) {
 
 export function formatDate(date: string) {
   const newDate = new Date(date);
-  const formatDate = `${newDate.getDate()}/${newDate.getMonth()}/${newDate.getFullYear()}`;
+  const formatDate = `${newDate.toLocaleTimeString()} - ${newDate.toLocaleDateString(
+    undefined,
+    { weekday: "short", day: "2-digit", month: "short", year: "numeric" }
+  )}`;
   return formatDate;
 }
 

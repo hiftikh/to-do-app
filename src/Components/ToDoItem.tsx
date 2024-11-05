@@ -1,69 +1,65 @@
 import { Checkbox, Button } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
-import { TaskItemInterface } from "../Interface/TaskItem";
 import { formatDate, joinClassNames } from "../lib/util";
+import { notifications } from "@mantine/notifications";
+import useTaskStore from "./hooks/useTaskStore";
 
-interface TaskListInterface {
-  task: TaskItemInterface;
-  deleteTask: Function;
-  toggleCompleted: Function;
-}
-
-interface Props {
-  onClick?: React.MouseEventHandler;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  checked?: boolean;
-}
-
-export default function ToDoItem({
-  task,
-  deleteTask,
-  toggleCompleted,
-}: TaskListInterface) {
-  const onChangeCompleteHandle = () => {
-    toggleCompleted(task.id);
+export default function ToDoItem() {
+  const { taskList, deleteTask, toggleComplete } = useTaskStore(
+    (state) => state
+  );
+  const onChangeCompleteHandle = (id: number) => {
+    toggleComplete(id);
   };
 
-  const onClickBtnHandle = () => {
-    deleteTask(task.id);
+  const onClickDeleteBtnHandle = (id: number) => {
+    deleteTask(id);
+    const taskName = taskList.filter((task) => task.id === id)[0].name;
+    notifications.show({
+      color: "red",
+      title: "Task Removed",
+      message: `"${taskName}"`,
+      autoClose: 2000,
+      position: "bottom-center",
+    });
   };
 
-  return (
-    <div
-      className={joinClassNames(
-        "flex my-5 rounded-xl justify-between items-center gap-5 shadow-lg p-5",
-        task.completed ? "bg-green-300" : "bg-white"
-      )}
-    >
-      <CompletedInput
-        onChange={onChangeCompleteHandle}
-        checked={task.completed}
-      />
-      <div className="w-5/6 text-left text-black">
-        <p>{task.text}</p>
-        <span className="text-xs">
-          Date Added: {formatDate(task.dateAdded.toString())}
-        </span>
-      </div>
-      <div className="flex flex-row">
-        <DeleteBtn onClick={onClickBtnHandle} />
-      </div>
-    </div>
-  );
-}
-
-const DeleteBtn = ({ onClick }: Props) => {
-  return (
-    <Button variant="filled" color="red" size="xs" onClick={onClick}>
-      <IconTrash size={14} />
-    </Button>
-  );
-};
-
-const CompletedInput = ({ onChange, checked }: Props) => {
   return (
     <>
-      <Checkbox checked={checked} onChange={onChange} />
+      {taskList?.map((task) => {
+        return (
+          <div
+            key={task.id}
+            className={joinClassNames(
+              "flex my-5 rounded-xl justify-between items-center gap-5 shadow-lg p-5",
+              task.completed ? "bg-green-300" : "bg-white"
+            )}
+          >
+            <Checkbox
+              checked={task.completed}
+              onChange={() => onChangeCompleteHandle(task.id)}
+            />
+            <div className="w-5/6 text-left text-black">
+              <p>{task.name}</p>
+              {task.dateAdded && (
+                <span className="text-[7pt]">
+                  {formatDate(task.dateAdded.toString())}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-row">
+              <Button
+                variant="filled"
+                color="red"
+                size="xs"
+                onClick={() => onClickDeleteBtnHandle(task.id)}
+              >
+                <IconTrash size={14} />
+              </Button>
+            </div>
+          </div>
+        );
+      })}
     </>
   );
-};
+}
