@@ -7,6 +7,5 @@ Created using **ReactJS/Typescript** via Vite.
 
 ## Features
 
-    - [x] Dark Mode toggle
-
+- [x] Dark Mode toggle
 - [x] localStorage (Tasks and Dark Mode)
