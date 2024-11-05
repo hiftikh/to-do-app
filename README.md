@@ -1,5 +1,7 @@
 # Simple To Do App
 
+Live Page: [Demo](https://hiftikh.github.io/to-do-app/)
+
 Created using **ReactJS/Typescript** via Vite.
 
 **Frontend Tools**: [TailwindCSS](https://tailwindcss.com/) and [Mantine](https://mantine.dev/)\
