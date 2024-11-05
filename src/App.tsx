@@ -1,11 +1,11 @@
 import "@mantine/core/styles.css";
-import { MantineProvider, Container, Button, Divider } from "@mantine/core";
-import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
+import { MantineProvider, Container, Divider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 import useThemeStore from "./Components/hooks/useThemeStore";
 import useTaskStore from "./Components/hooks/useTaskStore";
-import ToDoList from "./Components/ToDoList";
 import DarkModeToggle from "./Components/DarkModeToggle";
+import ToDoList from "./Components/ToDoList";
 import AddTask from "./Components/AddTask";
 import ClearHistory from "./Components/ClearHistory";
 
