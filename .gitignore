@@ -24,3 +24,5 @@ package-lock.json
 *.sln
 *.sw?
 
+tsconfig.node.tsbuildinfo
+tsconfig.app.tsbuildinfo
